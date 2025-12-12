@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Credit Default Risk Prediction - ML-powered probability of default assessment">
+  <title>Credit Risk Prediction | 4most Analytics</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <h1 class="brand-title">Credit Risk Analytics</h1>
+        <span class="brand-subtitle">Probability of Default Model</span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link active">Home</a></li>
+        <li><a href="/prediction.html" class="nav-link">Predict</a></li>
+        <li><a href="/model_results.html" class="nav-link">Models</a></li>
+        <li><a href="/docs" class="nav-link">Docs</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2 class="hero-title">Assess Credit Default Risk with ML</h2>
+      <p class="hero-description">
+        Production-grade machine learning system for predicting probability of default
+        on loan applications. Built on 1.3M+ real-world lending data points.
+      </p>
+      <div class="hero-actions">
+        <a href="/prediction.html" class="btn btn-primary">Make Prediction</a>
+        <a href="#features" class="btn btn-secondary">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-value">1.3M+</div>
+        <div class="stat-label">Training Records</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">78%</div>
+        <div class="stat-label">Model AUC</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">50+</div>
+        <div class="stat-label">Features</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2 class="section-title">System Capabilities</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3 class="feature-title">Data-Driven</h3>
+          <p class="feature-text">
+            Trained on LendingClub dataset with 1.3M+ loan records
+            spanning multiple years and economic cycles.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3 class="feature-title">Advanced ML</h3>
+          <p class="feature-text">
+            Ensemble approach using Logistic Regression and XGBoost
+            for optimal balance of accuracy and interpretability.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3 class="feature-title">Explainable AI</h3>
+          <p class="feature-text">
+            SHAP values provide transparent explanations for every
+            prediction, meeting regulatory requirements.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Real-Time API</h3>
+          <p class="feature-text">
+            FastAPI-powered REST API delivers predictions in
+            milliseconds with production-grade reliability.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3 class="feature-title">Risk Scoring</h3>
+          <p class="feature-text">
+            Three-tier risk classification (Low/Medium/High) with
+            actionable recommendations for each application.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3 class="feature-title">Validated</h3>
+          <p class="feature-text">
+            Industry-standard metrics (AUC-ROC, Gini, KS) ensure
+            model meets credit risk standards.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Model Performance Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Model Performance</h2>
+      <div class="performance-grid">
+        <div class="metric-card">
+          <div class="metric-label">AUC-ROC Score</div>
+          <div class="metric-value">0.781</div>
+          <div class="metric-desc">Overall discrimination ability</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Gini Coefficient</div>
+          <div class="metric-value">0.562</div>
+          <div class="metric-desc">Industry standard metric</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">KS Statistic</div>
+          <div class="metric-value">0.438</div>
+          <div class="metric-desc">Regulatory requirement</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Precision</div>
+          <div class="metric-value">61.2%</div>
+          <div class="metric-desc">Positive prediction accuracy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="workflow">
+        <div class="workflow-step">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Input Data</h3>
+          <p class="step-text">
+            Enter borrower information: income, loan amount,
+            credit score, debt-to-income ratio, employment history.
+          </p>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Feature Engineering</h3>
+          <p class="step-text">
+            System calculates 25+ derived features including
+            financial ratios, risk indicators, and interactions.
+          </p>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="step-number">3</div>
+          <h3 class="step-title">ML Prediction</h3>
+          <p class="step-text">
+            Ensemble models generate probability of default
+            with confidence scores and risk factors.
+          </p>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Decision Support</h3>
+          <p class="step-text">
+            Receive risk classification and recommendation
+            (Approve/Review/Decline) with full explanation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2 class="cta-title">Ready to Assess Credit Risk?</h2>
+      <p class="cta-text">
+        Start making data-driven lending decisions with our ML-powered system
+      </p>
+      <a href="/prediction.html" class="btn btn-large">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Credit Risk Analytics</h4>
+        <p>Production-grade ML for lending decisions</p>
+      </div>
+      <div class="footer-section">
+        <h4>Technology</h4>
+        <ul class="footer-links">
+          <li>Python + FastAPI</li>
+          <li>XGBoost + Scikit-learn</li>
+          <li>SHAP Explainability</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/model_results.html">Model Performance</a></li>
+          <li><a href="https://github.com">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Built with ❤️</p>
+        </h4>
+        <p>
+          <a href="https://www.linkedin.com/in/abhisheksuwalka/" target="_blank">
+            By Abhishek Suwalka
+          </a>
+        </p>
+        <p class="footer-meta">© 2025</p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

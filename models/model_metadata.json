@@ -1,0 +1,57 @@
+{
+  "training_date": "2025-12-12T14:25:23.645037",
+  "models": {
+    "logistic_regression": {
+      "model_name": "Logistic Regression",
+      "val_auc": 0.6652317770207422,
+      "val_gini": 0.3304635540414844,
+      "val_ks": 0.23666199387773645,
+      "val_accuracy": 0.6085383770628042,
+      "val_precision": 0.28431511710432933,
+      "val_recall": 0.632330547818013,
+      "val_f1": 0.39225873340437173,
+      "test_auc": 0.6638420589252801,
+      "test_gini": 0.3276841178505603,
+      "test_ks": 0.23425681956107008,
+      "test_accuracy": 0.6079350886891225,
+      "test_precision": 0.28384578168532393,
+      "test_recall": 0.631903435468895,
+      "test_f1": 0.3917297907121313,
+      "test_tn": 129833,
+      "test_fp": 85854,
+      "test_fn": 19822,
+      "test_tp": 34028,
+      "gini_interpretation": "Fair - Minimum acceptable",
+      "ks_interpretation": "Acceptable separation"
+    },
+    "xgboost": {
+      "model_name": "XGBoost",
+      "val_auc": 0.67770774997193,
+      "val_gini": 0.3554154999438599,
+      "val_ks": 0.2566379047308456,
+      "val_accuracy": 0.6201694764335748,
+      "val_precision": 0.29358219620920817,
+      "val_recall": 0.6408542246982358,
+      "val_f1": 0.4026884794455011,
+      "test_auc": 0.6764116321383363,
+      "test_gini": 0.35282326427667265,
+      "test_ks": 0.2533379083799856,
+      "test_accuracy": 0.6190801262906391,
+      "test_precision": 0.29236697060424605,
+      "test_recall": 0.6383101207056638,
+      "test_f1": 0.4010430643222999,
+      "test_tn": 132492,
+      "test_fp": 83195,
+      "test_fn": 19477,
+      "test_tp": 34373,
+      "gini_interpretation": "Fair - Minimum acceptable",
+      "ks_interpretation": "Acceptable separation"
+    }
+  },
+  "best_model": "xgboost",
+  "performance": {
+    "auc_roc": 0.6764116321383363,
+    "gini": 0.35282326427667265,
+    "ks_statistic": 0.2533379083799856
+  }
+}

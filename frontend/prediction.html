@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Predict credit default risk using ML models">
+  <title>Risk Prediction | Credit Analytics</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    /* Additional styles for prediction page */
+    .prediction-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .form-container {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-field label {
+      font-weight: 600;
+      color: var(--dark-2);
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .form-field .field-description {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-field input {
+      padding: 0.75rem;
+      border: 2px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .form-field input:focus {
+      outline: none;
+      border-color: var(--primary-1);
+      box-shadow: 0 0 0 3px rgba(4, 102, 200, 0.1);
+    }
+
+    .form-field input:invalid {
+      border-color: var(--danger);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary-1);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      background: var(--primary-3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(4, 102, 200, 0.3);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .loader {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .loader.active {
+      display: block;
+    }
+
+    .spinner {
+      border: 3px solid var(--border-color);
+      border-top: 3px solid var(--primary-1);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .result-container {
+      display: none;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .result-container.active {
+      display: block;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .result-header {
+      text-align: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .result-header h3 {
+      color: var(--dark-2);
+      margin-bottom: 0.5rem;
+    }
+
+    .probability-display {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--primary-3), var(--primary-1));
+      border-radius: 8px;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    .probability-value {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .probability-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .result-metric {
+      background: var(--bg-secondary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .result-metric-label {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .result-metric-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark-2);
+    }
+
+    .risk-low {
+      color: var(--success) !important;
+    }
+
+    .risk-medium {
+      color: var(--warning) !important;
+    }
+
+    .risk-high {
+      color: var(--danger) !important;
+    }
+
+    .risk-factors {
+      background: var(--bg-secondary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .risk-factors h4 {
+      color: var(--dark-2);
+      margin-bottom: 1rem;
+    }
+
+    .risk-factors ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .risk-factors li {
+      padding: 0.75rem;
+      background: white;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
+      border-left: 3px solid var(--warning);
+    }
+
+    .error-message {
+      background: #fee;
+      color: var(--danger);
+      padding: 1rem;
+      border-radius: 6px;
+      border-left: 4px solid var(--danger);
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .error-message.active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <h1 class="brand-title">Credit Risk Analytics</h1>
+        <span class="brand-subtitle">Probability of Default Model</span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/prediction.html" class="nav-link active">Predict</a></li>
+        <li><a href="/model_results.html" class="nav-link">Models</a></li>
+        <li><a href="/docs" class="nav-link">Docs</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="prediction-container">
+    <h2 style="text-align: center; color: var(--dark-2); margin-bottom: 2rem;">
+      Loan Application Risk Assessment
+    </h2>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="error-message"></div>
+
+    <!-- Input Form -->
+    <div class="form-container">
+      <h3 style="color: var(--dark-2); margin-bottom: 1.5rem;">
+        Enter Borrower Information
+      </h3>
+
+      <form id="predictionForm">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="revenue">Annual Income</label>
+            <span class="field-description">Total yearly income in USD</span>
+            <input type="number" id="revenue" name="revenue" min="1000" max="10000000" step="1000" value="50000"
+              required>
+          </div>
+
+          <div class="form-field">
+            <label for="loan_amnt">Loan Amount</label>
+            <span class="field-description">Requested loan amount in USD</span>
+            <input type="number" id="loan_amnt" name="loan_amnt" min="1000" max="1000000" step="1000" value="15000"
+              required>
+          </div>
+
+          <div class="form-field">
+            <label for="fico_n">FICO Credit Score</label>
+            <span class="field-description">Credit score (300-850)</span>
+            <input type="number" id="fico_n" name="fico_n" min="300" max="850" value="700" required>
+          </div>
+
+          <div class="form-field">
+            <label for="dti_n">Debt-to-Income Ratio</label>
+            <span class="field-description">Total debt / Annual income (0-1)</span>
+            <input type="number" id="dti_n" name="dti_n" min="0" max="1" step="0.01" value="0.25" required>
+          </div>
+
+          <div class="form-field">
+            <label for="emp_length_numeric">Employment Length</label>
+            <span class="field-description">Years at current employer (0-10)</span>
+            <input type="number" id="emp_length_numeric" name="emp_length_numeric" min="0" max="10" value="5" required>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          Calculate Default Risk
+        </button>
+      </form>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loader" class="loader">
+      <div class="spinner"></div>
+      <p style="margin-top: 1rem; color: var(--text-secondary);">
+        Processing prediction...
+      </p>
+    </div>
+
+    <!-- Results -->
+    <div id="resultContainer" class="result-container">
+      <div class="result-header">
+        <h3>Risk Assessment Result</h3>
+        <p style="color: var(--text-secondary);" id="resultTimestamp"></p>
+      </div>
+
+      <div class="probability-display">
+        <div class="probability-value" id="probabilityValue">--</div>
+        <div class="probability-label">Probability of Default</div>
+      </div>
+
+      <div class="result-grid">
+        <div class="result-metric">
+          <div class="result-metric-label">Risk Category</div>
+          <div class="result-metric-value" id="riskCategory">--</div>
+        </div>
+
+        <div class="result-metric">
+          <div class="result-metric-label">Confidence Score</div>
+          <div class="result-metric-value" id="confidenceScore">--</div>
+        </div>
+
+        <div class="result-metric">
+          <div class="result-metric-label">Recommendation</div>
+          <div class="result-metric-value" id="recommendation">--</div>
+        </div>
+      </div>
+
+      <div class="risk-factors" id="riskFactorsContainer">
+        <h4>Risk Factors Identified</h4>
+        <ul id="riskFactorsList"></ul>
+      </div>
+
+      <button onclick="resetForm()" class="submit-btn" style="background: var(--neutral-2); margin-top: 1.5rem;">
+        Assess Another Application
+      </button>
+    </div>
+  </main>
+
+  <script>
+    // Form submission handler
+    document.getElementById('predictionForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Get form data
+      const formData = new FormData(e.target);
+      const data = {
+        revenue: parseFloat(formData.get('revenue')),
+        loan_amnt: parseFloat(formData.get('loan_amnt')),
+        fico_n: parseInt(formData.get('fico_n')),
+        dti_n: parseFloat(formData.get('dti_n')),
+        emp_length_numeric: parseInt(formData.get('emp_length_numeric'))
+      };
+
+      // Show loader, hide error and results
+      document.getElementById('loader').classList.add('active');
+      document.getElementById('errorMessage').classList.remove('active');
+      document.getElementById('resultContainer').classList.remove('active');
+      document.getElementById('submitBtn').disabled = true;
+
+      try {
+        // Make API call
+        const response = await fetch('/api/predict', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message || 'Prediction failed');
+        }
+
+        const result = await response.json();
+        displayResult(result);
+
+      } catch (error) {
+        showError(error.message);
+      } finally {
+        document.getElementById('loader').classList.remove('active');
+        document.getElementById('submitBtn').disabled = false;
+      }
+    });
+
+    // Display prediction result
+    function displayResult(result) {
+      // Probability
+      document.getElementById('probabilityValue').textContent = result.probability_percentage;
+
+      // Risk category with color
+      const riskCat = document.getElementById('riskCategory');
+      riskCat.textContent = result.risk_category;
+      riskCat.className = 'result-metric-value risk-' + result.risk_category.toLowerCase().replace(' ', '-');
+
+      // Confidence
+      document.getElementById('confidenceScore').textContent =
+        (result.confidence_score * 100).toFixed(0) + '%';
+
+      // Recommendation
+      document.getElementById('recommendation').textContent = result.recommendation;
+
+      // Timestamp
+      const timestamp = new Date(result.prediction_timestamp).toLocaleString();
+      document.getElementById('resultTimestamp').textContent = `Generated: ${timestamp}`;
+
+      // Risk factors
+      const factorsList = document.getElementById('riskFactorsList');
+      factorsList.innerHTML = '';
+      result.risk_factors.forEach(factor => {
+        const li = document.createElement('li');
+        li.textContent = factor;
+        factorsList.appendChild(li);
+      });
+
+      // Show result
+      document.getElementById('resultContainer').classList.add('active');
+
+      // Scroll to result
+      document.getElementById('resultContainer').scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+
+    // Show error message
+    function showError(message) {
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.textContent = `Error: ${message}`;
+      errorDiv.classList.add('active');
+    }
+
+    // Reset form
+    function resetForm() {
+      document.getElementById('predictionForm').reset();
+      document.getElementById('resultContainer').classList.remove('active');
+      document.getElementById('errorMessage').classList.remove('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+
+</html>

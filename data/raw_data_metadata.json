@@ -1,0 +1,75 @@
+{
+  "dataset": {
+    "source": "https://zenodo.org/records/11295916/files/LC_loans_granting_model_dataset.csv",
+    "filename": "lending_club_loans.csv",
+    "download_timestamp": "2025-12-12T14:12:33.301967",
+    "md5_hash": "b019384d6bc65bf2a3e839362e4ff502"
+  },
+  "dimensions": {
+    "rows": 1347681,
+    "columns": 15,
+    "memory_mb": 728.25
+  },
+  "columns": {
+    "names": [
+      "id",
+      "issue_d",
+      "revenue",
+      "dti_n",
+      "loan_amnt",
+      "fico_n",
+      "experience_c",
+      "emp_length",
+      "purpose",
+      "home_ownership_n",
+      "addr_state",
+      "zip_code",
+      "Default",
+      "title",
+      "desc"
+    ],
+    "dtypes": {
+      "id": "int64",
+      "issue_d": "object",
+      "revenue": "float64",
+      "dti_n": "float64",
+      "loan_amnt": "int64",
+      "fico_n": "float64",
+      "experience_c": "int64",
+      "emp_length": "object",
+      "purpose": "object",
+      "home_ownership_n": "object",
+      "addr_state": "object",
+      "zip_code": "object",
+      "Default": "int64",
+      "title": "object",
+      "desc": "object"
+    }
+  },
+  "quality_metrics": {
+    "basic_info": {
+      "rows": 1347681,
+      "columns": 15,
+      "memory_usage_mb": 728.2478342056274,
+      "duplicate_rows": "0"
+    },
+    "data_types": {
+      "numeric": 7,
+      "object": 8,
+      "datetime": 0,
+      "categorical": 0
+    },
+    "missing_values": {
+      "total_missing": "1245240",
+      "percentage": 6.1599146979144175,
+      "columns_with_missing": ["zip_code", "title", "desc"]
+    },
+    "target_distribution": {
+      "values": {
+        "0": 1078432,
+        "1": 269249
+      },
+      "default_rate": 0.19978689318911522
+    }
+  }
+}

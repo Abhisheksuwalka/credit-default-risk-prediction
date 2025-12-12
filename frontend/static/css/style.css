@@ -1,0 +1,602 @@
+/**
+ * Credit Risk Analytics - Minimalistic UI
+ * Color Palette: Blues (#0466c8 to #979dac)
+ * Design: Clean, modern, professional
+ */
+
+/* =============================================================================
+   CSS VARIABLES - Color Palette
+   ============================================================================= */
+:root {
+  /* Primary Blues */
+  --primary-1: #0466c8;
+  --primary-2: #0353a4;
+  --primary-3: #023e7d;
+
+  /* Dark Blues */
+  --dark-1: #002855;
+  --dark-2: #001845;
+  --dark-3: #001233;
+
+  /* Neutral Grays */
+  --neutral-1: #33415c;
+  --neutral-2: #5c677d;
+  --neutral-3: #7d8597;
+  --neutral-4: #979dac;
+
+  /* Functional Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: var(--dark-2);
+  --text-secondary: var(--neutral-2);
+  --border-color: #e1e4e8;
+
+  /* Semantic Colors */
+  --success: #0a7029;
+  --warning: #d97706;
+  --danger: #dc2626;
+
+  /* Spacing System */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+}
+
+/* =============================================================================
+   RESET & BASE STYLES
+   ============================================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================================================
+   TYPOGRAPHY
+   ============================================================================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--dark-2);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+}
+h2 {
+  font-size: 2rem;
+  margin-bottom: var(--space-md);
+}
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+h4 {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-sm);
+}
+
+p {
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--primary-1);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-3);
+}
+
+/* =============================================================================
+   LAYOUT
+   ============================================================================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.section {
+  padding: var(--space-2xl) 0;
+}
+
+.section-alt {
+  background-color: var(--bg-secondary);
+}
+
+.section-title {
+  text-align: center;
+  color: var(--dark-2);
+  margin-bottom: var(--space-xl);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* =============================================================================
+   NAVIGATION
+   ============================================================================= */
+.navbar {
+  background: linear-gradient(135deg, var(--dark-3) 0%, var(--dark-1) 100%);
+  padding: var(--space-md) 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.brand-subtitle {
+  color: var(--neutral-4);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: var(--space-lg);
+  margin: 0;
+}
+
+.nav-link {
+  color: white;
+  font-weight: 500;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.nav-link.active {
+  background-color: var(--primary-1);
+}
+
+/* =============================================================================
+   HERO SECTION
+   ============================================================================= */
+.hero {
+  background: linear-gradient(
+    135deg,
+    var(--primary-3) 0%,
+    var(--primary-1) 100%
+  );
+  padding: var(--space-2xl) var(--space-lg);
+  color: white;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto var(--space-xl);
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: var(--space-md);
+  line-height: 1.1;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: var(--space-lg);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: var(--space-xs);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* =============================================================================
+   BUTTONS
+   ============================================================================= */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: white;
+  color: var(--primary-1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: var(--primary-1);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-secondary:hover {
+  background-color: white;
+  color: var(--primary-1);
+}
+
+.btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+/* =============================================================================
+   FEATURE GRID
+   ============================================================================= */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.feature-card {
+  background: white;
+  padding: var(--space-lg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-base);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-1);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+}
+
+.feature-title {
+  color: var(--dark-2);
+  font-size: 1.25rem;
+  margin-bottom: var(--space-sm);
+}
+
+.feature-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* =============================================================================
+   PERFORMANCE METRICS
+   ============================================================================= */
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+}
+
+.metric-card {
+  background: white;
+  padding: var(--space-xl) var(--space-lg);
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-base);
+}
+
+.metric-card:hover {
+  border-color: var(--primary-1);
+  box-shadow: 0 4px 12px rgba(4, 102, 200, 0.15);
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.metric-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-1);
+  margin-bottom: var(--space-xs);
+}
+
+.metric-desc {
+  font-size: 0.875rem;
+  color: var(--neutral-2);
+}
+
+/* =============================================================================
+   WORKFLOW
+   ============================================================================= */
+.workflow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.workflow-step {
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+  text-align: center;
+  padding: var(--space-lg);
+  background: white;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  background: var(--primary-1);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto var(--space-md);
+}
+
+.step-title {
+  color: var(--dark-2);
+  font-size: 1.125rem;
+  margin-bottom: var(--space-sm);
+}
+
+.step-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.workflow-arrow {
+  font-size: 2rem;
+  color: var(--primary-1);
+  font-weight: 300;
+}
+
+/* =============================================================================
+   CTA SECTION
+   ============================================================================= */
+.cta-section {
+  background: linear-gradient(135deg, var(--dark-3) 0%, var(--primary-3) 100%);
+  padding: var(--space-2xl) var(--space-lg);
+  text-align: center;
+  color: white;
+}
+
+.cta-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: var(--space-md);
+}
+
+.cta-text {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--space-xl);
+}
+
+/* =============================================================================
+   FOOTER
+   ============================================================================= */
+.footer {
+  background-color: var(--dark-3);
+  color: white;
+  padding: var(--space-xl) 0 var(--space-lg);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-xl);
+}
+
+.footer-section h4 {
+  color: white;
+  font-size: 1rem;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-section p {
+  color: var(--neutral-4);
+  font-size: 0.875rem;
+  margin-bottom: var(--space-xs);
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: var(--space-xs);
+}
+
+.footer-links a {
+  color: var(--neutral-4);
+  font-size: 0.875rem;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.footer-meta {
+  margin-top: var(--space-md);
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .workflow {
+    flex-direction: column;
+  }
+
+  .workflow-arrow {
+    transform: rotate(90deg);
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --space-xl: 2rem;
+    --space-2xl: 2.5rem;
+  }
+
+  .metric-value {
+    font-size: 2rem;
+  }
+}

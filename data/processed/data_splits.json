@@ -1,0 +1,11 @@
+{
+  "random_state": 42,
+  "test_size": 0.2,
+  "val_size": 0.25,
+  "train_samples": 808608,
+  "val_samples": 269536,
+  "test_samples": 269537,
+  "train_default_rate": 0.1997865467568958,
+  "val_default_rate": 0.19978778345007717,
+  "test_default_rate": 0.19978704222425864
+}
